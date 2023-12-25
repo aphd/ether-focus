@@ -2,7 +2,7 @@ name: BlockCypher
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   BlockCypher_CSV_Overwrite:
