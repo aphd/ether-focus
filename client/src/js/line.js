@@ -1,5 +1,6 @@
 
 module.exports.createLineChart = (data) => {
+    console.log(`data.length: ${data.length}`);
     // @ts-ignore
     const ctx = document.getElementById('myLineChart').getContext('2d');
     const chartData = {
