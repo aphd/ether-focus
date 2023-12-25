@@ -2,7 +2,7 @@ const fs = require('node:fs').promises;
 const {TOKENs} = require('./tokens');
 
 const main = async () => {
-	const FN = process.env.FN || `csv/main.eth.csv`;
+	const FN = `csv/main.eth.csv`;
 	const json = await getBlockcypher();
 	await fs.appendFile(FN, `${Object.values(json).join(',')}\n`, 'utf8').catch((e) => (`${e}`));
 };

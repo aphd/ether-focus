@@ -1,5 +1,5 @@
 doc:
-	cd client && yarn build
+	cd client && yarn install && yarn build
 
 unconf:
 	cd server && yarn unconf
