@@ -3,12 +3,12 @@ module.exports.createLineChart = (data) => {
     // @ts-ignore
     const ctx = document.getElementById('myLineChart').getContext('2d');
     const chartData = {
-        labels: data.map((row) => row.Month),
+        labels: data.map((row) => row.time),
         datasets: [
             {
                 label: 'Unconfrirmed traunsaction',
                 borderColor: 'rgb(75, 192, 192)',
-                data: data.map((row) => row.Sales),
+                data: data.map((row) => row.count),
                 fill: false,
             },
         ],
@@ -23,7 +23,7 @@ module.exports.createLineChart = (data) => {
                 position: 'bottom',
             },
             y: {
-                beginAtZero: true,
+                beginAtZero: false,
             },
         },
     };
