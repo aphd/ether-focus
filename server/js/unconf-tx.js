@@ -7,7 +7,6 @@ const main = async () => {
 	const rows = data.split(`\n`).slice(1, -1);
 	const unconfirmedTxs = rows.map(onRows).slice(-500);
 	const r = await fs.writeFile(JSON_FILE, JSON.stringify(unconfirmedTxs), 'utf8').catch((e) => (`${e}`));
-	console.log(`message: ${r}`);
 };
 
 const onRows = (e) => {
