@@ -3,7 +3,7 @@ name: Deploy static content to Pages
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0 0,6,12,18 * * *'
 
 jobs:
   BlockCypher_CSV_Overwrite:
