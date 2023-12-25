@@ -1,0 +1,27 @@
+name: BlockCypher
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  BlockCypher_CSV_Overwrite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get blockcypher data 
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+      - run: node main.js
+
+      - name: Commit & Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Overwritten by Github Actions - $(date)"
+          git push origin main
+
