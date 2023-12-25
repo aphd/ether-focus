@@ -2,7 +2,7 @@ name: Doc
 
 on:
   schedule:
-    - cron: '*/9 * * * *'
+    - cron: '30,40,50 * * * *'
 
 jobs:
   BlockCypher_CSV_Overwrite:
