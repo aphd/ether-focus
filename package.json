@@ -1,0 +1,14 @@
+{
+    "name": "blockcypher-plots",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "rm -rf docs; webpack"
+    },
+    "devDependencies": {
+        "html-webpack-plugin": "^5.6.0",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    }
+}
