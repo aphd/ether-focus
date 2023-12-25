@@ -1,0 +1,19 @@
+{
+	"editor.formatOnSave": false,
+	"files.associations": {
+	  "**/out**.js": "plaintext"
+	},
+	"workbench.colorCustomizations": {
+	  "tab.activeBorderTop": "#F9FAF2",
+	  "tab.activeBorder": "#F9FAF2",
+	  "activityBar.background": "#575a5a",
+	  "titleBar.activeBackground": "#575a5a",
+	  "titleBar.activeForeground": "#FBFAFA"
+	},
+	"liveServer.settings.port": 5502,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+	  "editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+  }
+  
