@@ -15,11 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Get blockcypher data 
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - run: make unconf && make doc
+
+      - name: Build
+        run: make unconf && make doc
 
       - name: Deploy to GitHub Pages
         run: |
