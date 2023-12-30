@@ -1,21 +1,21 @@
 
-module.exports.createGasPriceChart = (data) => {
+module.exports.createFeePriceChart = (data) => {
     console.log(`data.length: ${data.length}`);
     // @ts-ignore
-    const ctx = document.getElementById('gas-price').getContext('2d');
+    const ctx = document.getElementById('fee').getContext('2d');
     const chartData = {
         labels: data.map((row) => row.time),
         datasets: [
             {
-                label: 'High Gas Price',
-                borderColor: 'rgb(255, 51, 0)',
-                data: data.map((row) => row.high_gas_price),
+                label: 'High Priority Fee',
+                borderColor: 'rgb(255, 102, 102)',
+                data: data.map((row) => row.high_priority_fee),
                 fill: false,
             },
             {
-                label: 'Low Gas Price',
-                borderColor: 'rgb(204, 255, 102)',
-                data: data.map((row) => row.low_gas_price),
+                label: 'Low Priority Fee',
+                borderColor: 'rgb(153, 255, 153)',
+                data: data.map((row) => row.low_priority_fee),
                 fill: false,
             },
         ],
