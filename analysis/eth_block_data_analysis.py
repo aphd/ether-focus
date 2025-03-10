@@ -1,35 +1,6 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import argparse
-
-def load_data(filepath):
-    """Load the Ethereum block data from the CSV file."""
-    try:
-        df = pd.read_csv(filepath, on_bad_lines='skip')
-        df['time'] = pd.to_datetime(df['time'])
-        
-        # Localize time only if it is naive
-        if df['time'].dt.tz is None:
-            df['time'] = df['time'].dt.tz_localize('UTC')
-        return df
-    except Exception as e:
-        print(f"Error loading data: {e}")
-        return pd.DataFrame()  # Return an empty DataFrame on error
-
-def format_time_for_utc(datetime_str):
-    """Convert a datetime string to UTC format."""
-    dt = pd.to_datetime(datetime_str)
-    return dt.strftime('%Y-%m-%dT%H:%M:%S.') + '{:06d}'.format(dt.microsecond) + 'Z'
-
-def get_time_range(df, start_time=None, stop_time=None):
-    """Return the time range with UTC conversion."""
-    if df.empty:
-        raise ValueError("DataFrame is empty. Please check the data file.")
-
-    start_time = format_time_for_utc(start_time) if start_time else df['time'].min()
-    stop_time = format_time_for_utc(stop_time) if stop_time else df['time'].max()
-    return pd.to_datetime(start_time), pd.to_datetime(stop_time)
+from utils import load_data, get_time_range, parse_arguments
 
 def plot_histogram(df, columns, colors, labels, title):
     """Plot histograms for specified columns."""
@@ -97,13 +68,7 @@ def plot_selected_function(df, plot_type, start_time, stop_time):
     plot_functions.get(plot_type, lambda: print(f"Error: Plot type '{plot_type}' not found."))()
 
 def main():
-    """Main function to load data and generate selected plot."""
-    parser = argparse.ArgumentParser(description="Plot Ethereum block data.")
-    parser.add_argument('plot_type', type=str, help="The plot function to call.")
-    parser.add_argument('--start_time', type=str, help="Start time for time-based plots.")
-    parser.add_argument('--stop_time', type=str, help="Stop time for time-based plots.")
-    
-    args = parser.parse_args()
+    args = parse_arguments()
     
     # Load the data
     filepath = "../server/csv/main.eth.csv"
