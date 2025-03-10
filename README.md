@@ -10,6 +10,18 @@ https://aphd.github.io/ether-focus/
 cd analysis
 ```
 
+# EIP-1559
+1. Gas Price (prima di EIP-1559).
+Nel sistema precedente (prima della EIP-1559), l'utente impostava un singolo valore, il gas price, che era il prezzo per unità di gas che l'utente era disposto a pagare. Più alto era il gas price, più velocemente la transazione veniva inclusa in un blocco, perché i miner tendevano a selezionare le transazioni con il gas price più alto per massimizzare il loro guadagno.
+
+
+2. EIP-1559 e la separazione tra Base Fee e Priority Fee.   
+Con l'introduzione della EIP-1559 (Ethereum Improvement Proposal 1559), il modello di commissione è stato modificato, separando la commissione in due componenti principali:
+Base Fee: Una commissione di base che viene bruciata (cioè distrutta). La base fee è determinata dinamicamente dalla rete in base alla domanda di spazio nei blocchi. La base fee si adatta automaticamente in modo che la rete non sia né troppo congestionata né troppo vuota.
+Priority Fee (tip): Una mancia che l'utente paga direttamente ai miner (o validatori nella rete Ethereum 2.0). Questo è l'importo che l'utente aggiunge per incentivare i miner a trattare la sua transazione come una priorità. L'utente può scegliere quanto "generosa" essere questa mancia.
+
+
+
 # CSV Table
 Table describing each column in the provided CSV file.
 
