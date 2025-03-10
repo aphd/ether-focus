@@ -1,14 +1,14 @@
 # Analysis
 
+To install all packages from requirements.txt
 ```
-cd analysis
-
 python3 -m venv venv
 source venv/bin/activate
 python3 -m pip install -r requirements.txt
 
 ```
 
+To install a missing python package.
 ```
 python3 -m venv venv
 source venv/bin/activate
