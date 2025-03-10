@@ -10,6 +10,21 @@
 			"name": "main",
 			"runtimeVersion": "20",
 			"program": "${workspaceFolder}/client/src/js/main.js",
-		}
+		},
+		{
+			"type": "debugpy",
+			"request": "launch",
+			"name": "Run Python Script",
+			"program": "${workspaceFolder}/analysis/eth_block_data_analysis.py",  // Specify the path to your Python script here
+			"console": "integratedTerminal",  // You can use "externalTerminal" if you prefer
+			"args": [
+                "plot_fee_violin",              // The plot function you want to call
+                "--start_time", "2023-12-13T22:51:02.709711787Z"    
+			],
+			"cwd": "${workspaceFolder}/analysis",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/analysis/venv/lib/python3.13/site-packages"
+            }
+		  }
 	]
 }

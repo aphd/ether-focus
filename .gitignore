@@ -1,1 +1,31 @@
+# Python-related files
+
+# Bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# OS-specific files
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Node.js-related files
+
+# Node.js packages
 node_modules/
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
