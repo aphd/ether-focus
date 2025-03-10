@@ -20,20 +20,20 @@ help:
 	@echo "  --stop_time (e.g., 2025-06-13)"
 
 # Plot Gas Price Distribution
-plot_gas_price_distribution:
-	python $(PYTHON_SCRIPT) plot_gas_price_distribution
-
-# Plot Peer Count vs Unconfirmed Count
-plot_peer_vs_unconfirmed:
-	python $(PYTHON_SCRIPT) plot_peer_vs_unconfirmed --start_time 2024-12-01 --stop_time 2025-06-13
-
-# Plot Correlation Heatmap
-plot_correlation_heat_map:
-	python $(PYTHON_SCRIPT) plot_correlation_heat_map
+plot_histogram:
+	python $(PYTHON_SCRIPT) plot_histogram
 
 # Plot Fee Violin (with optional start_time and stop_time)
 plot_fee_violin:
 	python $(PYTHON_SCRIPT) plot_fee_violin
+
+# Plot Peer Count vs Unconfirmed Count
+plot_line_with_twin_axes:
+	python $(PYTHON_SCRIPT) plot_line_with_twin_axes --start_time 2024-12-01 --stop_time 2025-06-13
+
+# Plot Correlation Heatmap
+plot_correlation_heat_map:
+	python $(PYTHON_SCRIPT) plot_correlation_heat_map
 
 # Plot Fee Violin with custom time range
 plot_fee_violin_custom_time:
