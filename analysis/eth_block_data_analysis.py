@@ -51,7 +51,7 @@ def plot_peer_vs_unconfirmed(df):
 
 def plot_gas_price_correlation(df):
     """Plot correlation heatmap of gas price columns."""
-    gas_columns = ['high_gas_price', 'medium_gas_price', 'low_gas_price', 'high_priority_fee', 'medium_priority_fee', 'low_priority_fee']
+    gas_columns = ['base_fee', 'high_priority_fee', 'high_gas_price', 'peer_count', 'unconfirmed_count']
     corr = df[gas_columns].corr()
     plt.figure(figsize=(10, 6))
     sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
