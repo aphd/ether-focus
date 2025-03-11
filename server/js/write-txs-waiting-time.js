@@ -30,30 +30,32 @@ const savePendingTransactionsToCSV = async (pendingTxs) => {
     console.log(`Pending transactions appended to ${PENDING_TXS_CSV_PATH}`);
 };
 
+const processTransaction = async (line) => {
+    const [hash, received_origin] = line.split(",");
+    const details = await getTransactionDetails(hash);
+    // TODO if block_height of transaction detail is -1 uou should not write in WAITING_TIME_TXS_CSV_PATH 
+    // and it should be rewrite into PENDING_TXS_CSV_PATH to the end of the file
+    const { block_height, confirmed, received, fees, gas_fee_cap, gas_price, gas_tip_cap, gas_used } = details;
+    const csvEntry = `${block_height},${hash},${received_origin},${received},${confirmed},${fees},${gas_fee_cap},${gas_price},${gas_tip_cap},${gas_used}\n`;
+    await fs.appendFile(WAITING_TIME_TXS_CSV_PATH, csvEntry, "utf8");
+};
+
 const processTransactions = async () => {
     const data = await fs.readFile(PENDING_TXS_CSV_PATH, "utf8");
     const lines = data.trim().split("\n");
     if (lines.length <= 1) return;
-
     const header = lines[0];
     const toProcess = lines.slice(1, LINE_TO_PROCESS + 1);
     const remaining = [header, ...lines.slice(LINE_TO_PROCESS + 1)];
     await fs.writeFile(PENDING_TXS_CSV_PATH, remaining.join("\n") + "\n", "utf8");
 
-    for (const line of toProcess) {
-        const [hash, received_origin] = line.split(",");
-        const details = await getTransactionDetails(hash);
-        const { block_height, confirmed, received, fees, gas_fee_cap, gas_price, gas_tip_cap, gas_used } = details;
-        const csvEntry = `${block_height},${hash},${received_origin},${received},${confirmed},${fees},${gas_fee_cap},${gas_price},${gas_tip_cap},${gas_used}\n`;
-        await fs.appendFile(WAITING_TIME_TXS_CSV_PATH, csvEntry, "utf8");
-    }
+    for (const line of toProcess) await processTransaction(line);
 };
 
 const countLinesInFile = async (filePath) => {
     const data = await fs.readFile(filePath, "utf8");
     const pendingLines = data.trim().split("\n").length;
     console.log(`Lines in ${filePath}: ${pendingLines}`);
-
 };
 
 const main = async () => {
