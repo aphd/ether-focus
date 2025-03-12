@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import argparse
 from utils.date import convert_to_datetime, calculate_time_difference
 from utils.data_processing import read_csv
 
@@ -26,8 +27,11 @@ def plot_scatter(data):
 
 def main():
     """Main function to execute the full process."""
-    file_path = "../server/csv/waiting-time-txs.csv"
-    df = read_csv(file_path)
+    parser = argparse.ArgumentParser(description='Plot gas tips and fees from a CSV file.')
+    parser.add_argument('file_path', type=str, help='Path to the CSV file')
+    args = parser.parse_args()
+
+    df = read_csv(args.file_path)
     df = convert_to_datetime(df)
     df = calculate_time_difference(df)
 

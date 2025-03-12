@@ -3,6 +3,8 @@
 ### Fetch unconnfirmed transactions
 GET https://api.blockcypher.com/v1/eth/main/txs?token={{API_TOKEN}}
 
+### Fetch 
+GET https://api.blockcypher.com/v1/eth/main/blocks/21022769
 
 ### Fetch the transaction details 
 GET https://api.blockcypher.com/v1/eth/main/txs/9f9032913484a9dfb552176fd0253f61ee4334a07ed729966ce0a7206f118692
@@ -16,4 +18,4 @@ GET https://api.blockcypher.com/v1/btc/main/txs/f854aebae95150b379cc1187d848d582
 GET https://api.blockcypher.com/v1/eth/main/txs/5fb7e5bd926c8700467fc6a98bb5bf0a93fa9fcdeb185a992ac39fb2a12b52bd?token=14aefda7e093476a89a0a1828f1ca0dd
 
 ###
-GET https://api.blockcypher.com/v1/eth/main/txs/fb3650c0ce9fb1cba67ff88f63a38a03d0e0d5557b7e4743a34e4ea79202b477?token=02db01c627b94ae298572f486ffe64e7
+GET https://api.blockcypher.com/v1/eth/main/txs/d5bcb9f8999bd62c2bf4772826d9ad340e2f8e1b0de0bae555eca580da7bfd58?token=02db01c627b94ae298572f486ffe64e7
