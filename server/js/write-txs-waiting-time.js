@@ -22,8 +22,9 @@ const getPendingTransactions = async () => {
 
 const getTransactionDetails = async (hash) => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
-    const response = await fetch(`${API_URL}/${hash}?token=${TOKEN}`);
-    if (!response.ok) onError(`HTTP error! Status: ${response.status}`);
+    const url = `${API_URL}/${hash}?token=${TOKEN}`;
+    const response = await fetch(url);
+    if (!response.ok) onError(`HTTP error! Status: ${response.status};\n url: ${url}`);
 
     return await response.json();
 };
