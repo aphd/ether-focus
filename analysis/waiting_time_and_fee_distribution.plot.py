@@ -15,6 +15,7 @@ def convert_to_datetime(df):
 def calculate_time_difference(df):
     """Calculate time differences in seconds."""
     df['confirmed_received'] = (df['confirmed'] - df['received']).dt.total_seconds()
+    df['confirmed_received_origin'] = (df['confirmed'] - df['received_origin']).dt.total_seconds()
     return df
 
 def plot_violin(data, column, ylabel, subplot_position, color, bw=0.2, width=0.8):
