@@ -6,7 +6,8 @@ const PENDING_TXS_CSV_PATH = "./csv/pending-txs.csv";
 const WAITING_TIME_TXS_CSV_PATH = "./csv/waiting-time-txs.csv";
 const LINE_TO_PROCESS = 10;
 
-const onError = (msg) => {
+const onError = ({status}) => {
+    console.log(status)
     throw new Error(msg);
 }
 
@@ -23,9 +24,8 @@ const getPendingTransactions = async () => {
 const getTransactionDetails = async (hash) => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
     const url = `${API_URL}/${hash}?token=${TOKEN}`;
-    const response = await fetch(url);
-    if (!response.ok) onError(`HTTP error! Status: ${response.status};\n url: ${url}`);
-
+    const response = await fetch(url).catch(onError);
+    if (!response.ok) return {};
     return await response.json();
 };
 
@@ -45,6 +45,7 @@ const processTransaction = async (line) => {
         console.log(`Transaction with hash ${hash} moved to the end of the pending transactions.`);
         return;
     }
+    if (!block_height) return;
     const csvEntry = `${block_height},${hash},${received_origin},${received},${confirmed},${fees},${gas_fee_cap},${gas_price},${gas_tip_cap},${gas_used}\n`;
     await fs.appendFile(WAITING_TIME_TXS_CSV_PATH, csvEntry, "utf8");
 };
