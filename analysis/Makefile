@@ -1,5 +1,5 @@
 # Define the Python script
-PYTHON_SCRIPT=eth_block_data_analysis.py
+PYTHON_SCRIPT=eth_block_data_analysis.plot.py
 
 # Define the CSV file path for the data
 CSV_PATH=../server/csv/main.eth.csv
@@ -10,10 +10,11 @@ all: help
 # Display available options
 help:
 	@echo "Usage:"
-	@echo "  make plot_gas_price_distribution"
-	@echo "  make plot_peer_vs_unconfirmed"
-	@echo "  make plot_correlation_heat_map"
+	@echo "  make plot_histogram"
 	@echo "  make plot_fee_violin"
+	@echo "  make plot_line_with_twin_axes"
+	@echo "  make plot_fee_violin_custom_time"
+	@echo "  make plot_correlation_heat_map"
 	@echo ""
 	@echo "Optional parameters:"
 	@echo "  --start_time (e.g., 2024-12-01)"

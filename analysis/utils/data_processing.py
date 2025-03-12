@@ -14,6 +14,10 @@ def load_data(filepath):
     except Exception as e:
         print(f"Error loading data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame on error
+    
+def read_csv(file_path):
+    """Read CSV file into a DataFrame."""
+    return pd.read_csv(file_path)
 
 def format_time_for_utc(datetime_str):
     """Convert a datetime string to UTC format."""
