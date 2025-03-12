@@ -20,7 +20,7 @@ def calculate_time_difference(df):
 
 def plot_violin(data, column, ylabel,  subplot_position, color, bw=0.2, width=0.8):
     """Generate a violin plot for a specified column."""
-    plt.subplot(1, 3, subplot_position)  # Change to 1x3 layout
+    plt.subplot(1, 2, subplot_position)  # Change to 1x3 layout
     sns.violinplot(data=data, y=column, inner=None, bw_method=bw, width=width, color=color)  # Use bw_method
     sns.boxplot(data=data, y=column, width=0.2, color='white', fliersize=5, linewidth=2)
     sns.stripplot(data=data, y=column, color='black', size=5, alpha=0.6)
@@ -36,8 +36,7 @@ def main():
     plt.figure(figsize=(15, 6))  # Adjust figure size to accommodate 3 plots
 
     plot_violin(df, 'confirmed_received', "confirmed - received (in seconds)", 1, color='blue')
-    plot_violin(df, 'confirmed_received_origin', "confirmed - received_origin (in seconds)", 2, color='orange')
-    plot_violin(df, 'gas_tip_cap', "Gas tip cap (GWei)", 3, color='green')  # New plot for gas_tip_cap
+    plot_violin(df, 'gas_tip_cap', "Gas tip cap (GWei)", 2, color='green')  # New plot for gas_tip_cap
 
     plt.tight_layout()
     plt.show()
