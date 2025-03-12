@@ -1,9 +1,9 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
-on:
-  schedule:
-    - cron: '0 * * * *'
+# on:
+#   schedule:
+#     - cron: '0 * * * *'
 
 jobs:
   # Build job
