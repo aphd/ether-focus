@@ -2,7 +2,7 @@ name: Write Waiting Time Txs
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   BlockCypher_CSV_Overwrite:
@@ -24,4 +24,3 @@ jobs:
           git add .
           git commit -m "Overwritten by Github Actions - $(date)"
           git push origin main
-
