@@ -1,22 +1,7 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-def read_csv(file_path):
-    """Read CSV file into a DataFrame."""
-    return pd.read_csv(file_path)
-
-def convert_to_datetime(df):
-    """Convert specified columns to datetime format."""
-    for col in ['received', 'received_origin', 'confirmed']:
-        df[col] = pd.to_datetime(df[col])
-    return df
-
-def calculate_time_difference(df):
-    """Calculate time differences in seconds."""
-    df['confirmed_received'] = (df['confirmed'] - df['received']).dt.total_seconds()
-    df['confirmed_received_origin'] = (df['confirmed'] - df['received_origin']).dt.total_seconds()
-    return df
+from utils.date import convert_to_datetime, calculate_time_difference
+from utils.data_processing import read_csv
 
 def plot_violin(data, column, ylabel, subplot_position, color, bw=0.2, width=0.8):
     """Generate a violin plot for a specified column."""
