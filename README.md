@@ -50,12 +50,12 @@ Txs Waiting time
 | Field            | Description                                                                 | Example Value                                      |
 |------------------|-----------------------------------------------------------------------------|----------------------------------------------------|
 | `block_height`   | Height of the block containing the transaction (`-1` if unconfirmed).       | `1234567` or `-1`                                 |
-| `hash`           | Unique transaction hash.                                                    | `"32d59b47b5ec6f4fbf2e956d3ae3bc36c9b939bc8cb5b0c71cb69f357b82a269"` |
+| `hash`           | Unique transaction hash.                                                    | `"32d59b47b5ec6f4fbf2e956d3ae3bc3...9"` |
 | `received_origin`| Timestamp when the transaction was first received by BlockCypher.           | `"2025-03-11T09:35:43.324Z"`                      |
 | `received`       | Parsed `datetime` object of `received_origin`.                              | `2025-03-11 09:35:43.324000+00:00`                |
 | `confirmed`      | Timestamp when the transaction was confirmed (included in a block).         | `"2025-03-11T09:36:12.000Z"`                      |
 | `fees`           | Total transaction fees paid, in wei.                                        | `4200000000000000`                                 |
-| `gas_fee_cap`    | Maximum fee per gas (EIP-1559).                                             | `200000000000`                                    |
+| `gas_fee_cap`    | The maximum total fee the user is willing to pay for a transaction, including both the base fee (set by the protocol) and the tip (user-defined).                                             | `200000000000`                                    |
 | `gas_price`      | Actual price per unit of gas paid, in wei.                                  | `200000000000`                                    |
-| `gas_tip_cap`    | Maximum priority fee per gas (EIP-1559).                                    | `2000000000`                                      |
+| `gas_tip_cap`    | The maximum tip the user is willing to pay to miners or validators for prioritizing the transaction.                                    | `2000000000`                                      |
 | `gas_used`       | Total gas used by the transaction.                                          | `21000`                                           |
