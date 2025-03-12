@@ -5,7 +5,8 @@
     "license": "MIT",
     "scripts": {
         "unconf": "node js/unconf-tx.js",
-        "block": "node js/blockcypher.js"
+        "block": "node js/blockcypher.js",
+        "waitingTime": "node js/write-txs-waiting-time.js"
     }
 }
 

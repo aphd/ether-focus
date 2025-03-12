@@ -12,6 +12,14 @@
 			"program": "${workspaceFolder}/client/src/js/main.js",
 		},
 		{
+			"type": "node",
+			"request": "launch",
+			"name": "write-txs-waiting-time",
+			"runtimeVersion": "22",
+			"program": "${workspaceFolder}/server/js/write-txs-waiting-time.js",
+			"cwd": "${workspaceFolder}/server"
+		},
+		{
 			"type": "debugpy",
 			"request": "launch",
 			"name": "Run Python Script",

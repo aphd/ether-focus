@@ -1,0 +1,17 @@
+@API_TOKEN=11a629086ae34b548cac699be105e7b0
+
+### Fetch unconnfirmed transactions
+GET https://api.blockcypher.com/v1/eth/main/txs?token={{API_TOKEN}}
+
+
+### Fetch the transaction details 
+GET https://api.blockcypher.com/v1/eth/main/txs/9f9032913484a9dfb552176fd0253f61ee4334a07ed729966ce0a7206f118692
+
+### Fetch 
+
+### 
+GET https://api.blockcypher.com/v1/btc/main/txs/f854aebae95150b379cc1187d848d58225f3c4157fe992bcd166f58bd5063449
+
+###
+GET https://api.blockcypher.com/v1/eth/main/txs/d95e7c96ae061141ee8b9f97ec0aad77498abe6d13419726634f3bebf3ecb549?token=14aefda7e093476a89a0a1828f1ca0dd
+
