@@ -7,3 +7,6 @@ unconf:
 block:
 	cd server && yarn block
 
+waitingTxs:
+	cd server && yarn waitingTime
+

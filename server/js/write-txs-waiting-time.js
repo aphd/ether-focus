@@ -2,14 +2,18 @@ import fs from "node:fs/promises";
 import { TOKENs } from "./tokens.js";
 
 const API_URL = "https://api.blockcypher.com/v1/eth/main/txs";
-const PENDING_TXS_CSV_PATH = "server/csv/pending-txs.csv";
-const WAITING_TIME_TXS_CSV_PATH = "server/csv/waiting-time-txs.csv";
+const PENDING_TXS_CSV_PATH = "./csv/pending-txs.csv";
+const WAITING_TIME_TXS_CSV_PATH = "./csv/waiting-time-txs.csv";
 const LINE_TO_PROCESS = 10;
+
+const onError = (msg) => {
+    throw new Error(msg);
+}
 
 const getPendingTransactions = async () => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
     const response = await fetch(`${API_URL}?token=${TOKEN}`);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) onError(`HTTP error! Status: ${response.status}`);
 
     const transactions = await response.json();
     const pendingTxs = transactions.filter((tx) => tx.block_height === -1);
@@ -19,7 +23,7 @@ const getPendingTransactions = async () => {
 const getTransactionDetails = async (hash) => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
     const response = await fetch(`${API_URL}/${hash}?token=${TOKEN}`);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) onError(`HTTP error! Status: ${response.status}`);
 
     return await response.json();
 };
@@ -33,9 +37,13 @@ const savePendingTransactionsToCSV = async (pendingTxs) => {
 const processTransaction = async (line) => {
     const [hash, received_origin] = line.split(",");
     const details = await getTransactionDetails(hash);
-    // TODO if block_height of transaction detail is -1 uou should not write in WAITING_TIME_TXS_CSV_PATH 
-    // and it should be rewrite into PENDING_TXS_CSV_PATH to the end of the file
     const { block_height, confirmed, received, fees, gas_fee_cap, gas_price, gas_tip_cap, gas_used } = details;
+    if (block_height == -1) {
+        const csvEntry = `${hash},${received_origin}\n`;
+        await fs.appendFile(PENDING_TXS_CSV_PATH, csvEntry, "utf8");
+        console.log(`Transaction with hash ${hash} moved to the end of the pending transactions.`);
+        return;
+    }
     const csvEntry = `${block_height},${hash},${received_origin},${received},${confirmed},${fees},${gas_fee_cap},${gas_price},${gas_tip_cap},${gas_used}\n`;
     await fs.appendFile(WAITING_TIME_TXS_CSV_PATH, csvEntry, "utf8");
 };
@@ -63,7 +71,6 @@ const main = async () => {
     await savePendingTransactionsToCSV(pendingTxs);
     await processTransactions();
 
-    // TOOD print  how many line is made the file PENDING_TXS_CSV_PATH and WAITING_TIME_TXS_CSV_PATH
     await countLinesInFile(PENDING_TXS_CSV_PATH);
     await countLinesInFile(WAITING_TIME_TXS_CSV_PATH);
 };
