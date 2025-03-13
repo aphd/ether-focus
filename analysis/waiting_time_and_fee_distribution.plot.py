@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import argparse
 from utils.date import convert_to_datetime, calculate_time_difference
 from utils.data_processing import read_csv
 
@@ -11,15 +12,14 @@ def plot_violin(data, column, ylabel, subplot_position, color, bw=0.2, width=0.8
     sns.stripplot(data=data, y=column, color='black', size=3, alpha=0.6, jitter=True)  # Enable jitter for better spread
     plt.ylabel(ylabel)
 
-def main():
+def main(file_path):
     """Main function to execute the full process."""
-    file_path = "../server/csv/waiting-time-txs.csv"
     df = read_csv(file_path)
     df = convert_to_datetime(df)
     df = calculate_time_difference(df)
 
     plt.figure(figsize=(15, 6))  # Adjust figure size to accommodate 2 plots
-
+    print(df['confirmed_received'])
     plot_violin(df, 'confirmed_received', "confirmed - received (in seconds)", 1, color='blue')
     plot_violin(df, 'gas_tip_cap', "Gas tip cap (GWei)", 2, color='green')  # New plot for gas_tip_cap
 
@@ -27,4 +27,8 @@ def main():
     plt.show()
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Plot data from a CSV file.')
+    parser.add_argument('file_path', type=str, help='Path to the CSV file')
+
+    args = parser.parse_args()
+    main(args.file_path)

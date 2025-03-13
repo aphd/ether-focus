@@ -40,6 +40,18 @@ plot_correlation_heat_map:
 plot_fee_violin_custom_time:
 	python $(PYTHON_SCRIPT) plot_fee_violin --start_time 2024-12-01 --stop_time 2025-06-13
 
+plot_waiting_time_fees_correlation:
+	python waiting_time_fees_correlation.plot.py "../server/csv/waiting-time-txs.csv"
+
+plot_waiting_time_fees_correlation_histo:
+	python waiting_time_fees_correlation.plot.py "../server/csv/waiting-time-txs-by-block.csv"
+
+plot_waiting_time_and_fee_distribution:
+	python waiting_time_and_fee_distribution.plot.py "../server/csv/waiting-time-txs.csv"
+
+plot_waiting_time_and_fee_distribution_histo:
+	python waiting_time_and_fee_distribution.plot.py "../server/csv/waiting-time-txs-by-block.csv"
+
 # Clean target (optional, can be used for cleaning up temporary files, logs, etc.)
 clean:
 	@echo "Cleaning up temporary files (if any)."

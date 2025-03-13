@@ -15,7 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22.x'
-      - run: make waitingTxs
+          
+      - run: make waitingTxs  # Run first command to get waiting transactions
+
+      - run: make waitingTxsByBlock  # Run second command to get waiting transactions by block
 
       - name: Commit & Push
         run: |
