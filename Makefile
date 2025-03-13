@@ -10,3 +10,5 @@ block:
 waitingTxs:
 	cd server && yarn waitingTime
 
+waitingTxsByBlock:
+	cd server && yarn waitingTimeByBlock

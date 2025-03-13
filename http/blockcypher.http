@@ -1,4 +1,5 @@
 @API_TOKEN=11a629086ae34b548cac699be105e7b0
+@hash=cc3689eb6595f08ce895db5ede58388daca913f924946375bc88e031ffc7619a
 
 ### Fetch unconnfirmed transactions
 GET https://api.blockcypher.com/v1/eth/main/txs?token={{API_TOKEN}}
@@ -7,7 +8,7 @@ GET https://api.blockcypher.com/v1/eth/main/txs?token={{API_TOKEN}}
 GET https://api.blockcypher.com/v1/eth/main/blocks/21022769
 
 ### Fetch the transaction details 
-GET https://api.blockcypher.com/v1/eth/main/txs/9f9032913484a9dfb552176fd0253f61ee4334a07ed729966ce0a7206f118692
+GET https://api.blockcypher.com/v1/eth/main/txs/{{hash}}
 
 ### Fetch 
 
