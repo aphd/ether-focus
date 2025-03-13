@@ -7,7 +7,7 @@
         "unconf": "node js/unconf-tx.js",
         "block": "node js/blockcypher.js",
         "waitingTime": "node js/write-txs-waiting-time.js",
-        "waitingTimeByBLock": "node js/write-txs-waiting-time-by-block.js"
+        "waitingTimeByBlock": "node js/write-txs-waiting-time-by-block.js"
     }
 }
 
