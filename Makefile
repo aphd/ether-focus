@@ -12,3 +12,6 @@ waitingTxs:
 
 waitingTxsByBlock:
 	cd server && yarn waitingTimeByBlock
+
+inflationDeflationTraker:
+	cd server && yarn inflationDeflationTracker
