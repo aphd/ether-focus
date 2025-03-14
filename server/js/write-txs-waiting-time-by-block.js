@@ -1,34 +1,31 @@
 import fs from "node:fs/promises";
 import { TOKENs } from "./tokens.js";
+import { getLatestBlockNumber } from "./utils/chain_utils.js";
 
 const API_URL = "https://api.blockcypher.com/v1/eth/main";
 const PENDING_TXS_CSV_PATH = "./csv/txs-by-block.csv";
 const WAITING_TIME_TXS_CSV_PATH = "./csv/waiting-time-txs-by-block.csv";
 const LINE_TO_PROCESS = 20;
 
-const onError = ({status}) => {
-    console.log(status)
+const onError = ({ status }) => {
+    console.log(status);
     throw new Error(msg);
-}
-
-// TODO write an arrow function via async/await able to read a csv file  PENDING_TXS_CSV_PATH ahveing header block, hash
-// the function should be able to get the max block number
-const getLastBlockNum = async () => {
-    const data = await fs.readFile(PENDING_TXS_CSV_PATH, 'utf8');
-    const lines = data.trim().split('\n').slice(1); // Skip header
-    const lastLine = lines[lines.length - 1]; // Get the last row
-    return parseInt(lastLine.split(',')[0], 10); // Extract the block number from the first column of the last row
 };
 
-
+// TODO update this to give you a block number betwen a fixded minimum and a maximum that correposnd to the last block appended to the blockchain
+const getRandomBlockNum = async () => {
+    const maxBlockNumber = await getLatestBlockNumber();
+    const minBlockNumber = 10000000; // was mined on approximately May 4th, 2020 under a Proof-of-Work (PoW) consensus mechanism.
+    return Math.floor(Math.random() * (maxBlockNumber - minBlockNumber + 1)) + minBlockNumber;
+};
 
 const getTxHashByBlock = async (blockNum) => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
     const response = await fetch(`${API_URL}/blocks/${blockNum}?token=${TOKEN}`);
     if (!response.ok) onError(`HTTP error! Status: ${response.status}`);
-    const {txids} = await response.json();
+    const { txids } = await response.json();
     return txids;
-}; 
+};
 
 const getTransactionDetails = async (hash) => {
     const TOKEN = TOKENs[Math.floor(Math.random() * TOKENs.length)];
@@ -71,9 +68,10 @@ const countLinesInFile = async (filePath) => {
 };
 
 const main = async () => {
-    const lastBlcokNumer = await getLastBlockNum() + 1;
-    const txs = await getTxHashByBlock(lastBlcokNumer);
-    await savePendingTransactionsToCSV(txs, lastBlcokNumer);
+    const blcokNumer = (await getRandomBlockNum()) + 1;
+    console.log("blcokNumer:", blcokNumer);
+    const txs = await getTxHashByBlock(blcokNumer);
+    await savePendingTransactionsToCSV(txs, blcokNumer);
     await processTransactions();
 
     await countLinesInFile(PENDING_TXS_CSV_PATH);
