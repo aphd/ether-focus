@@ -1,0 +1,19 @@
+@apikey=DSKSZSWHV6XVPK755G4392I6T22UXQTVFS
+@blockNumber=21022770
+
+### Get Total Ethereum Supply
+GET https://api.etherscan.io/api?module=stats&action=ethsupply&apikey={{apikey}}
+
+###  Get the Latest Block Numbe
+GET https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey={{apikey}}
+
+### Get Block Data (blockReward)
+GET https://api.etherscan.io/api?module=block&action=getblockreward&blockno=20000021&apikey={{apikey}}
+
+###
+GET https://api.etherscan.io/api?module=proxy&action=eth_getBlockByNumber&tag={{blockNumber}}&boolean=true&apikey={{apikey}}
+
+###
+https://ycharts.com/indicators/ethereum_supply#:~:text=Basic%20Info,0.43%25%20from%20one%20year%20ago.
+
+
