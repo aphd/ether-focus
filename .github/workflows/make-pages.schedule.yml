@@ -2,6 +2,7 @@
 name: Deploy static content to Pages
 
 on:
+  workflow_dispatch: # Allows manual triggering, preventing automatic scheduling
 #   schedule:
 #     - cron: '0 * * * *'
 
