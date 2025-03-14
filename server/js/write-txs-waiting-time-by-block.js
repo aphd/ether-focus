@@ -7,8 +7,7 @@ const PENDING_TXS_CSV_PATH = "./csv/txs-by-block.csv";
 const WAITING_TIME_TXS_CSV_PATH = "./csv/waiting-time-txs-by-block.csv";
 const LINE_TO_PROCESS = 20;
 
-const onError = ({ status }) => {
-    console.log(status);
+const onError = (msg) => {
     throw new Error(msg);
 };
 
