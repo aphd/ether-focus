@@ -1,14 +1,10 @@
 import fs from "node:fs/promises";
+import { getLatestBlockNumber, fetchData } from "./utils/chain_utils.js"; 
 
 const CSV_PATH = `./csv/inflation-deflation.csv`;
 const etherscanApiKey = "DSKSZSWHV6XVPK755G4392I6T22UXQTVFS";
 const blockcypherApiUrl = "https://api.blockcypher.com/v1/eth/main/blocks/";
 const etherscanApiUrl = "https://api.etherscan.io/api";
-
-const fetchData = async (url) => {
-    const response = await fetch(url);
-    return await response.json();
-};
 
 // Get the Total Ethereum Supply from Etherscan
 const getEthereumSupply = async () => {
@@ -28,13 +24,6 @@ const getBlockReward = async (blockNumber) => {
     const url = `${etherscanApiUrl}?module=block&action=getblockreward&blockno=${blockNumber}&apikey=${etherscanApiKey}`;
     const data = await fetchData(url);
     return data.result.blockReward;
-};
-
-// Get the latest block number from Etherscan API
-const getLatestBlockNumber = async () => {
-    const url = `${etherscanApiUrl}?module=proxy&action=eth_blockNumber&apikey=${etherscanApiKey}`;
-    const data = await fetchData(url);
-    return parseInt(data.result, 16); // Convert hex to decimal
 };
 
 // Calculate Burnt Fees using BlockCypher's base_fee and gas used per transaction

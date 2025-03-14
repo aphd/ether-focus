@@ -11,8 +11,7 @@ const onError = ({status}) => {
     throw new Error(msg);
 }
 
-// TODO write an arrow function via async/await able to read a csv file  PENDING_TXS_CSV_PATH ahveing header block, hash
-// the function should be able to get the max block number
+// TODO update this to give you a block number betwen a fixded minimum and a maximum that correposnd to the last block appended to the blockchain
 const getLastBlockNum = async () => {
     const data = await fs.readFile(PENDING_TXS_CSV_PATH, 'utf8');
     const lines = data.trim().split('\n').slice(1); // Skip header
