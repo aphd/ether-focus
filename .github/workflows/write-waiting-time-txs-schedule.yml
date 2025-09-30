@@ -1,8 +1,8 @@
 name: Write Waiting Time Txs
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  # schedule:
+  #   - cron: '*/5 * * * *'
 
 jobs:
   BlockCypher_CSV_Overwrite:
