@@ -1,8 +1,9 @@
 name: inflationDeflationTraker
 
 on:
-  schedule:
-    - cron: '0 13 * * *'
+  # schedule:
+  #  - cron: '0 13 * * *'
+  workflow_dispatch:
 
 jobs:
   BlockCypher_CSV_Overwrite:
